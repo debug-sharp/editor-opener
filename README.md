@@ -3,8 +3,6 @@ JScript utility to open Desharp log links and rendered exception links like: 'ed
 
 This tool is proudly based on this script: **[Opening files in IDE by one click from Tracy's page](https://pla.nette.org/en/how-open-files-in-ide-from-debugger)**
 
-https://pla.nette.org/cs/jak-otevrit-soubor-z-debuggeru-v-editoru
-
 ## Instalation
 - **Put the contents of the repository to a new empty folder, where you will no longer move the folder in the future**, for example `C:\Program Files (x86)\Editor Opener`
 - **Run `Install.wsf` by double click on it, better to run as Administrator**
