@@ -7,7 +7,7 @@ JScript utility to open links in form `editor://open?file=...&amp;line=...` in V
 - **Run `Install.wsf` by double click on it, better to run as Administrator** and allow all messages by Antivirus,
   because script has to change itself to run properly in the future and to create 
   and run *.bat and *.reg to register all browser links beginning with: `editor://`,
-  but if you are still fucking fearful, [read the source code here](https://github.com/debug-sharp/editor-opener/blob/master/Install.wsf).
+  but if you are still fucking fearful, [read the source code here](https://github.com/debug-sharp/editor-opener/blob/master/Install.wsf), it doesn't send anything about you anywhere:-)
 - If you are not sure if everything has been ok, you can run it anytime again without any consequences.
 - Once the installation has finished successfully, you should see the window wth text:
   **"Run editor successfully installed."**
