@@ -1,5 +1,9 @@
 # Editor Opener
-JScript utility to open links in form `editor://open?file=...&amp;line=...` in Visual Studio or your favourite text editor or IDE.
+JScript utility to open Desharp log links and rendered exception links like: 'editor://open?file=...&line=...' efectively back in Visual Studio or your favourite text editor or IDE.
+
+This tool is proudly based on this script: **[Opening files in IDE by one click from Tracy's page](https://pla.nette.org/en/how-open-files-in-ide-from-debugger)**
+
+https://pla.nette.org/cs/jak-otevrit-soubor-z-debuggeru-v-editoru
 
 ## Instalation
 - **Put the contents of the repository to a new empty folder, where you will no longer move the folder in the future**, for example `C:\Program Files (x86)\Editor Opener`
