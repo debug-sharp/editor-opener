@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>RunEditor test</title>
+	<style type="text/css">html,body{font-family:'consolas',courier;font-size:18px;font-weight:bold;}</style>
+</head>
+<body>
+	
+	<h1>I'm very nice &lt;h1&gt;, to open me, choose link bellow:</h1>
+	
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=MSVS2017">Open H1 in Visual Studio 2017</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=MSVS2015">Open H1 in Visual Studio 2015</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=MSVS2013">Open H1 in Visual Studio 2013</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=MSVS2012">Open H1 in Visual Studio 2012</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=MSVS2010">Open H1 in Visual Studio 2010</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=MSVS2008">Open H1 in Visual Studio 2008</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=MSVS2005">Open H1 in Visual Studio 2005</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=MSVS2003">Open H1 in Visual Studio 2003</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=MSVS2002">Open H1 in Visual Studio 2002</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=WinNotepad">Open H1 in ugly Windows Notepad</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=NotepadPP">Open H1 in Notepad++</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=PSPad">Open H1 in PSPad</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=PHPEd">Open H1 in NuSphere PhpED</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=NetBeans">Open H1 in NetBeans 8.0.2</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=EclipsePHP">Open H1 in EclipsePHP</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=SciTE">Open H1 in SciTE</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=EmEditor">Open H1 in EmEditor</a><br />
+	<a href="editor://open/?file=__FILE_FULL_PATH__&line=__LINE__&editor=gVim">Open H1 in gVim</a><br />
+	
+	<script type="text/javascript">
+		(function(){
+			var fileFullPath = location.href.substr('file:///'.length);
+			var links = document.getElementsByTagName('a');
+			var link, href = '';
+			for (var i = 0, l = links.length; i < l; i += 1) {
+				link = links[i];
+				href = link.getAttribute('href');
+				href = href
+					.replace('__FILE_FULL_PATH__', fileFullPath)
+					.replace('__LINE__', 10);
+				link.setAttribute('href', href);
+			}
+		})();
+	</script>
+	
+</body>
+</html>

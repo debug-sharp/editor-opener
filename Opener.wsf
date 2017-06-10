@@ -1,0 +1,43 @@
+<job>
+	<script language="JScript" src="./WSH/Class.js"></script>
+	<script language="JScript" src="./WSH/String.js"></script>
+	<script language="JScript" src="./WSH/Log.js"></script>
+	<script language="JScript" src="./WSH/Wsh.js"></script>
+	<script language="JScript" src="./WSH/Shell.js"></script>
+	<script language="JScript" src="./WSH/Editor.js"></script>
+	<script language="VBscript" src="./WSH/VisualStudioOpener.vb"></script>
+	<script language="JScript">
+	
+		Class.Define('Opener', {
+			Extend: Editor,
+			Static: {
+				CURRENT_DIR: '',
+				CURRENT_FILE: 'Opener.wsf',
+				DEFAULT_EDITOR: 'WinNotepad',
+				EDITORS_COMMANDS: {
+					MSVS2015:	"VisualStudio.DTE.15.0",
+					MSVS2015:	"VisualStudio.DTE.14.0",
+					MSVS2013:	"VisualStudio.DTE.12.0",
+					MSVS2012:	"VisualStudio.DTE.11.0",
+					MSVS2010:	"VisualStudio.DTE.10.0",
+					MSVS2008:	"VisualStudio.DTE.9.0",
+					MSVS2005:	"VisualStudio.DTE.8.0",
+					MSVS2003:	"VisualStudio.DTE.7.1",
+					MSVS2002:	"VisualStudio.DTE.7",
+					WinNotepad:	'cd "C:\\Windows\\System32\\"\r\nnotepad.exe "%file%" %line%',
+					NotepadPP:	'cd "C:\\Program Files (x86)\\Notepad++\\"\r\nnotepad++.exe -n%line% "%file%"',
+					PSPad:		'cd "C:\\Program Files (x86)\\PSPad editor\\"\r\nPSPad.exe -%line% "%file%"',
+					PHPEd:		'"C:\\Program Files (x86)\\NuSphere\\PhpED\\phped.exe" "%file%" --line=%line%',
+					NetBeans:	'cd "C:\\Program Files\\NetBeans 8.0.2\\bin\\"\r\nnetbeans.exe "%file%:%line%" --console  suppress --nosplash',
+					EclipsePHP: 'cd "C:\\Program Files\\Eclipse PHP\\"\r\neclipse.exe "%file%"',
+					SciTE:		'"C:\\Program Files\\SciTE\\scite.exe" "-open:%file%" -goto:%line%',
+					EmEditor:	'"C:\\Program Files\\EmEditor\\EmEditor.exe" "%file%" /l %line%',
+					gVim:		'"C:\\Program Files\\Vim\\vim73\\gvim.exe" "%file%" +%line%'
+				}
+			}
+		});
+		
+		new Opener();
+		
+	</script>
+</job>

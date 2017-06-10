@@ -1,0 +1,99 @@
+<job>
+	<script language="JScript" src="./WSH/Class.js"></script>
+	<script language="JScript" src="./WSH/String.js"></script>
+	<script language="JScript" src="./WSH/Log.js"></script>
+	<script language="JScript" src="./WSH/Wsh.js"></script>
+	<script language="JScript" src="./WSH/Shell.js"></script>
+	<script language="JScript">
+	
+/******************************************************************************
+
+This script generates file install.reg:
+
+-------------------------------------------------------------------------------
+REGEDIT4
+
+[HKEY_CLASSES_ROOT\editor]
+@="URL:editor Protocol"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\editor\shell\open\command]
+@="wscript \"C:\\full\\path\\to\\run-editor\\Opener.wsf\" \"%1\""
+-------------------------------------------------------------------------------
+
+and runs command line: REG IMPORT "install.reg"
+
+******************************************************************************/
+
+		Class.Define('RunEditorInstaller', {
+			Static: {
+				DIR: Wsh.Fso.GetAbsolutePathName('.').replace(/\\/g, '\\\\'),
+				PROTOCOL: 'editor',
+				SCRIPT: 'Opener.wsf',
+				REGEDIT: 'REGEDIT4\r\n\r\n[HKEY_CLASSES_ROOT\\__PROTOCOL__]\r\n@="URL:__PROTOCOL__ Protocol"\r\n"URL Protocol"=""\r\n\r\n[HKEY_CLASSES_ROOT\\__PROTOCOL__\\shell\\open\\command]\r\n@="wscript \\"__DIR__\\\\__SCRIPT__\\" \\"%1\\""'
+			},
+			_currentDir: '',
+			Constructor: function () {
+				this._currentDir = Wsh.Fso.GetAbsolutePathName('.').replace(/\\/g, '/');
+				
+				var regCmd = this._completeRegCommand();
+				this._installRegCommand(regCmd);
+				
+				this._completeCurrentDirRecordInRunEditorWsfFile();
+				
+				WScript.Echo("Run Editor successfully installed.\r\n\r\nTo test it - open text.html file \r\nand try to click on link with your favourite text editor or IDE.");
+			},
+			_completeRegCommand: function () {
+				var constants = ['DIR', 'PROTOCOL', 'SCRIPT'];
+				var regeditCmd = this.self.REGEDIT;
+				var replacement = '';
+				var regExp;
+				for (var i = 0, l = constants.length; i < l; i++) {
+					replacement = '__' + constants[i] + '__';
+					regExp = new RegExp(replacement, 'g');
+					regeditCmd = regeditCmd.replace(regExp, this.self[constants[i]]);
+				}
+				return regeditCmd;
+			},
+			_installRegCommand: function (regCmd) {
+				var regFullPath = this._currentDir + '/install.reg';
+				var batFullPath = this._currentDir + '/install.bat';
+				
+				var regFileStream = Wsh.Fso.CreateTextFile(regFullPath, true, false); // for overwriting, not as Unicode
+				regFileStream.Write(regCmd);
+				regFileStream.Close();
+				
+				Shell.SaveAndExec('REG IMPORT "' + regFullPath + '"', batFullPath);
+				
+				Wsh.Fso.DeleteFile(batFullPath);
+				Wsh.Fso.DeleteFile(regFullPath);
+			},
+			_completeCurrentDirRecordInRunEditorWsfFile: function () {
+				var wsfFullPath = this._currentDir + '/Opener.wsf';
+				var wsfTextStream = Wsh.Fso.OpenTextFile(wsfFullPath, 1, 0); // for reading, as ASCII
+				var line = '';
+				var lines = [];
+				var wsfContent = '';
+				var matches = [];
+				while (!wsfTextStream.AtEndOfStream) {
+					line = wsfTextStream.ReadLine();
+					matches = /^([\s]*)CURRENT_DIR\:([^']*)'([^']*)',/g.exec(line);
+					if (matches) {
+						line = matches[1] + "CURRENT_DIR: '" + this._currentDir + "',";
+					}
+					lines.push(line);
+				};
+				wsfTextStream.Close();
+				
+				wsfContent = lines.join("\r\n");
+				
+				wsfTextStream = Wsh.Fso.OpenTextFile(wsfFullPath, 2, 0); // for writing, as ASCII
+				wsfTextStream.Write(wsfContent);
+				wsfTextStream.Close();
+			}
+		});
+		
+		new RunEditorInstaller();
+		
+	</script>
+</job>
