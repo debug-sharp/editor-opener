@@ -16,12 +16,12 @@ This tool is proudly based on this script: **[Opening files in IDE by one click 
 
 ## Test
 - open file: `test.html` in your favourite browser and click on any editor link you have installed on your local machine
-- if you see after second opened file `test.html` in chosen editor, everything works fine and you can use Desharp HTML logs and Desharp web application exceptions in responses more efectively
+- if you see after second opened file `test.html` in chosen editor, everything works fine and you can use **[Desharp](https://www.nuget.org/packages/Desharp/)** HTML logs and **[Desharp](https://www.nuget.org/packages/Desharp/)** web application exceptions in responses more efectively
 
 ## Usage
-- Desharp can automaticly detect, which version of Visual Studio you are currently using, so it's not necessary to change anything, Desharp will always add proper param to open files in currently installed visual studio
+- **[Desharp](https://www.nuget.org/packages/Desharp/)** can automaticly detect, which version of Visual Studio you are currently using, so it's not necessary to change anything, **[Desharp](https://www.nuget.org/packages/Desharp/)** will always add proper param to open files in currently installed visual studio
 - to use this Editor Opener in other developer platforms and to realy add any other editor, edit file `Opener.wsf`, it's nice and short, you will see, what to do
-- let Desharp logs output format to **html** by config settings `<add key="Desharp:Output" value="html" />`
+- let **[Desharp](https://www.nuget.org/packages/Desharp/)** logs output format to **html** by config settings `<add key="Desharp:Output" value="html" />`
   - call: `Desharp.Debug.Log(obj, Level.INFO);`
     - click on any `editor://` link inside `~/logs/info.html` file opened in your browser to see what happends
   - throw any exception in you ASP.NET application: `throw new Exception("msg");`
