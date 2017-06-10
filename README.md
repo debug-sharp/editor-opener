@@ -21,6 +21,6 @@ JScript utility to open links in form `editor://open?file=...&amp;line=...` in V
 - to use this Editor Opener in other developer platforms and to realy add any other editor, edit file `Opener.wsf`, it's nice and short, you will see, what to do
 - let Desharp logs output format to **html** by config settings `<add key="Desharp:Output" value="html" />`
   - call: `Desharp.Debug.Log(obj, Level.INFO);`
-    - click on any editor:// link inside `~/logs/info.html` file opened in your browser to see what happends
+    - click on any `editor://` link inside `~/logs/info.html` file opened in your browser to see what happends
   - throw any exception in you ASP.NET application: `throw new Exception("msg");`
-    - click on any editor:// link in rendered exception in browser response to see what happends
+    - click on any `editor://` link in rendered exception in browser response to see what happends
