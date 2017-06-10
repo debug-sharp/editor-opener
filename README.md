@@ -17,8 +17,8 @@ JScript utility to open links in form `editor://open?file=...&amp;line=...` in V
 - if you see after second opened file `test.html` in chosen editor, everything works fine and you can use Desharp HTML logs and Desharp web application exceptions in responses more efectively
 
 ## Usage
-- to add any other editor, edit file `Opener.wsf`, it's nice and short, you will see, what to do
-- Desharp can automaticly detect which version of Visual Studio you are using
+- Desharp can automaticly detect, which version of Visual Studio you are currently using, so it's not necessary to change anything, Desharp will always add proper param to open files in currently installed visual studio
+- to use this editor opener in other developer platforms and to realy add any other editor, edit file `Opener.wsf`, it's nice and short, you will see, what to do
 - just let Desharp logs output format to HTML
   - click on any editor:// link inside
   - throw any exception in you ASP.NET application to see rendered exception in browser response with editor:// links.
